@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Create professional GitHub README files visually and download the Markdown instantly.">
+  <meta name="theme-color" content="#0b1020">
+  <title>README Studio — Build better README files</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="README Studio home">
+      <span class="logo">&lt;/&gt;</span>
+      <span>README <b>Studio</b></span>
+    </a>
+    <div class="top-actions">
+      <span id="status" class="status">Saved locally</span>
+      <button id="themeBtn" class="ghost" type="button">☼ Theme</button>
+      <button id="resetBtn" class="ghost danger" type="button">New</button>
+      <button id="downloadBtn" class="primary" type="button">↓ Download .md</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="intro">
+      <div>
+        <span class="eyebrow">README GENERATOR</span>
+        <h1>From blank repo to a README people actually want to read.</h1>
+        <p>Fill in your project details. README Studio writes the Markdown, structures every section and gives you a ready-to-upload file.</p>
+      </div>
+      <div class="score-card">
+        <div id="scoreRing" class="score-ring"><strong id="scoreNumber">0</strong><span>/100</span></div>
+        <div><b>README score</b><p id="scoreHint">Add your project details.</p></div>
+      </div>
+    </section>
+
+    <section class="import-card">
+      <div>
+        <b>Already have a GitHub repo?</b>
+        <span>Import its public metadata and let us prefill the boring parts.</span>
+      </div>
+      <div class="import-row">
+        <input id="repoImport" placeholder="owner/repository or GitHub URL" autocomplete="off">
+        <button id="importBtn" class="secondary" type="button">Import</button>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <form class="editor" onsubmit="return false">
+        <div class="panel-heading">
+          <div><span class="step">01</span><h2>Project</h2></div>
+        </div>
+
+        <label class="field"><span>Template</span>
+          <select id="template">
+            <option value="professional">Professional</option>
+            <option value="minimal">Minimal</option>
+            <option value="opensource">Open Source</option>
+            <option value="cli">CLI Tool</option>
+            <option value="app">Web / App</option>
+          </select>
+        </label>
+
+        <div class="grid-2">
+          <label class="field"><span>Project name</span><input data-field="name" placeholder="Nebula"></label>
+          <label class="field"><span>Version <small>optional</small></span><input data-field="version" placeholder="1.0.0"></label>
+        </div>
+
+        <label class="field"><span>One-line description</span><input data-field="description" maxlength="180" placeholder="A fast, beautiful app for…"></label>
+        <label class="field"><span>About the project</span><textarea data-field="longDescription" rows="5" placeholder="What does it solve? Who is it for? Why did you build it?"></textarea></label>
+
+        <div class="grid-2">
+          <label class="field"><span>GitHub repository</span><input data-field="repository" placeholder="https://github.com/user/repo"></label>
+          <label class="field"><span>Live demo</span><input data-field="demo" placeholder="https://example.com"></label>
+        </div>
+
+        <div class="panel-heading section-gap">
+          <div><span class="step">02</span><h2>Content</h2></div>
+        </div>
+
+        <label class="field"><span>Features <small>one per line</small></span><textarea data-field="features" rows="5" placeholder="Real-time preview&#10;No account required&#10;Export Markdown"></textarea></label>
+        <label class="field"><span>Technologies <small>one per line</small></span><textarea data-field="tech" rows="4" placeholder="TypeScript&#10;React&#10;Vite"></textarea></label>
+        <label class="field"><span>Prerequisites <small>one per line</small></span><textarea data-field="requirements" rows="3" placeholder="Node.js 20+"></textarea></label>
+        <label class="field"><span>Installation commands</span><textarea data-field="installation" rows="6" spellcheck="false"></textarea></label>
+        <label class="field"><span>Usage example</span><textarea data-field="usage" rows="5" spellcheck="false"></textarea></label>
+        <label class="field"><span>Scripts <small>name: description</small></span><textarea data-field="scripts" rows="4" placeholder="dev: Start development server&#10;test: Run tests"></textarea></label>
+        <label class="field"><span>Roadmap <small>one item per line</small></span><textarea data-field="roadmap" rows="4" placeholder="Add themes&#10;Add localization"></textarea></label>
+        <label class="field"><span>Contributing</span><textarea data-field="contributing" rows="4" placeholder="Leave blank for a sensible default."></textarea></label>
+        <label class="field"><span>FAQ <small>Question | Answer, one per line</small></span><textarea data-field="faq" rows="4" placeholder="Is it free? | Yes."></textarea></label>
+
+        <div class="grid-2">
+          <label class="field"><span>License</span>
+            <select data-field="license">
+              <option>MIT</option><option>Apache-2.0</option><option>GPL-3.0</option><option>BSD-3-Clause</option><option>ISC</option><option>Unlicense</option><option>Proprietary</option>
+            </select>
+          </label>
+          <label class="check-card"><input data-field="badges" type="checkbox"><span><b>GitHub badges</b><small>Stars, forks, issues and license.</small></span></label>
+        </div>
+
+        <div class="grid-2">
+          <label class="field"><span>Author / team</span><input data-field="author" placeholder="Your name"></label>
+          <label class="field"><span>Website</span><input data-field="website" placeholder="https://yoursite.com"></label>
+        </div>
+
+        <div class="panel-heading section-gap">
+          <div><span class="step">03</span><h2>Sections</h2></div>
+          <button id="customBtn" class="ghost small" type="button">+ Custom section</button>
+        </div>
+        <p class="muted">Choose what to include and change the order.</p>
+        <div id="sections" class="sections-list"></div>
+      </form>
+
+      <aside class="output">
+        <div class="output-toolbar">
+          <div class="tabs">
+            <button type="button" class="tab active" data-tab="preview">Preview</button>
+            <button type="button" class="tab" data-tab="markdown">Markdown</button>
+          </div>
+          <button id="copyBtn" class="ghost small" type="button">Copy</button>
+        </div>
+        <article id="preview" class="markdown-body"></article>
+        <textarea id="raw" class="raw-output" readonly hidden spellcheck="false"></textarea>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <span>README Studio</span>
+    <span>Your draft stays in your browser.</span>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
