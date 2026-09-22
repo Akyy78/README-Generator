@@ -1,0 +1,11 @@
+{
+  "name": "readme-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A zero-dependency visual README.md generator for GitHub.",
+  "scripts": {
+    "test": "node --test",
+    "serve": "npx serve ."
+  }
+}
