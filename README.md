@@ -1,69 +1,25 @@
-# README Studio
+# Plate
 
-**README Studio** is a fast, zero-dependency web app that creates polished GitHub `README.md` files without requiring users to know Markdown.
+Want a personal TikTok-like experience to host on your PC? Well, this repo is for you.
 
-Fill in the project details, see the README update live, then copy the Markdown or download the finished file.
+## About
 
-## Highlights
+With this project, you can have your own version of TikTok for free, complete with a local backend. Furthermore, by accessing the files, you can configure Google as your backend—everything is already set up; you just need to enter your own credentials. Alternatively, you can host everything on your own machine.
 
-- Live GitHub-style preview
-- Professional, Minimal, Open Source, CLI and App templates
-- Import metadata from any public GitHub repository
-- Optional `package.json` enrichment for version and npm scripts
-- Automatic GitHub badges
-- README quality score with improvement hints
-- Reorderable and optional sections
-- FAQ, roadmap, scripts and custom sections
-- Browser-only autosave — no account or backend
-- Light and dark themes
-- Copy Markdown or download a real `.md` file
-- Responsive desktop/mobile UI
-- `Ctrl/Cmd + S` shortcut for instant download
-- No framework, no build step, no runtime dependencies
+## Getting Started
 
-## Run locally
-
-You only need a static HTTP server because the app uses ES modules.
+### Installation
 
 ```bash
-python3 -m http.server 4173
+npm install
+
+npm start
 ```
 
-Open `http://localhost:4173`.
+## Contributing
 
-## Tests
-
-Requires a recent Node.js version with the built-in test runner.
-
-```bash
-npm test
-```
-
-## Deploy
-
-The project is entirely static, so it can be hosted on **GitHub Pages**, Cloudflare Pages, Netlify, Vercel or any static hosting provider.
-
-For GitHub Pages, publish the repository root from the `main` branch.
-
-## Privacy
-
-README Studio has no backend. Drafts are stored in the browser's `localStorage`. GitHub import requests are made directly from the browser to GitHub's public API.
-
-## Structure
-
-```text
-.
-├── index.html
-├── styles.css
-├── app.js
-├── generator.js
-├── tests/
-│   └── generator.test.js
-├── package.json
-├── .nojekyll
-└── README.md
-```
+Contributions are welcome. Fork the repository, create a feature branch, commit your changes and open a pull request.
 
 ## License
 
-MIT
+Distributed under the **MIT** license.
